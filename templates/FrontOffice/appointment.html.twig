@@ -1,0 +1,100 @@
+{% extends 'FrontOffice/base.html.twig' %}
+
+{% block body %}
+<section class="page-title bg-1">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block text-center">
+                    <span class="text-white">Belghith audition</span>
+                    <h1 class="text-capitalize mb-5 text-lg">Rendez-vous en quelques clics</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+    <section class="appoinment section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="mt-3">
+                        <div class="feature-icon mb-3">
+                            <i class="icofont-support text-lg"></i>
+                        </div>
+                        <span class="h3" style=" color:#e12454">Appelez en cas d'urgence!</span>
+                        <h2 class="text-color mt-3"> +216 27 817 104 </h2>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
+                        <h2 class="mb-2 title-color">Prendre Rendez-Vous</h2>
+                        <p class="mb-4">Pour plus de commodité, veuillez remplir le formulaire en ligne pour demander un rendez-vous; notre secrétaire vous contactera ensuite pour confirmer.</p>
+                        {{ form_start(form, {'attr': {'id': 'appointment-form', 'novalidate': 'novalidate'}}) }}
+                        <form id="#" class="appoinment-form" method="post" action="#">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ form_widget(form.typeRendezvous, {'attr': {'class': 'form-control', 'id': 'exampleFormControlSelect1'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ form_widget(form.nom,{'attr':{'class':'form-control','placeholder': 'Nom'}}) }}
+                                        {% if form_errors(form.nom) %}
+                                            <div class="alert alert-danger error-message">{{ form_errors(form.nom) }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ form_widget(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                                        {% if form_errors(form.prenom) %}
+                                            <div class="alert alert-danger error-message">{{ form_errors(form.prenom) }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ form_widget(form.dateNaissance, {'attr': {'class': 'form-control', 'placeholder': 'Date de naissance'}}) }}
+                                        {% if form_errors(form.dateNaissance) %}
+                                            <div class="alert alert-danger error-message">{{ form_errors(form.dateNaissance) }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
+                                        {% if form_errors(form.phone) %}
+                                            <div class="alert alert-danger error-message">{{ form_errors(form.phone) }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{ form_widget(form.message, {'attr': {'class': 'form-control', 'rows': '6', 'placeholder': 'Votre Message'}}) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-main btn-round-full">Confirmer<i class="icofont-simple-right ml-2"></i></button>
+                            {{ form_end(form) }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}
+

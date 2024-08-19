@@ -43,6 +43,9 @@ class Rendezvous
     #[Assert\NotBlank(message: "La type ne doit pas être vide")]
     private ?string $typeRendezvous = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateAjout = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,6 +119,18 @@ class Rendezvous
     public function setTypeRendezvous(string $typeRendezvous): static
     {
         $this->typeRendezvous = $typeRendezvous;
+
+        return $this;
+    }
+
+    public function getDateAjout(): ?\DateTimeInterface
+    {
+        return $this->dateAjout;
+    }
+
+    public function setDateAjout(?\DateTimeInterface $dateAjout): static
+    {
+        $this->dateAjout = $dateAjout;
 
         return $this;
     }

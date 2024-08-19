@@ -1,0 +1,29 @@
+{% extends 'security/registration.html.twig' %}
+{% block title %} Récupération du mot de passe {% endblock %}
+
+{% block content %}
+<div class="login-page">
+    <div class="form">
+        <img src="{{ asset('FrontOffice/images/logo.png') }}" alt="Logo" width="100" height="100" />
+    {% for flash_error in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    <h4>Récupérez votre mot de passe</h4>
+
+    {{ form_start(requestForm , {'attr': {'novalidate': 'novalidate'}} )}}
+        {{ form_widget(requestForm.email, {'attr': {'class': 'form-control', 'placeholder': 'email'}}) }}
+        {% if form_errors(requestForm.email) %}
+            <div class="alert alert-danger error-message">{{ form_errors(requestForm.email) }}</div>
+        {% endif %}
+        <div>
+            <small class="message">
+                Entrez votre adresse e-mail et nous vous enverrons un
+                lien pour réinitialiser votre mot de passe.
+            </small>
+        </div>
+        <br>
+        <button class="custom-btn btn-11">Envoyer</button>
+    {{ form_end(requestForm) }}
+    </div>
+</div>
+{% endblock %}

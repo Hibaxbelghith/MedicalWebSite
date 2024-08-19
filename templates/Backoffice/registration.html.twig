@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link href="{{ asset('BackOffice/css/FormStyle.css') }}" rel="stylesheet" />
+</head>
+<body>
+<div class="login-page">
+    <div class="form">
+        <img src="{{ asset('FrontOffice/images/logo.png') }}" alt="Logo" width="100" height="100" />
+
+        <form class="register-form" novalidate>
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+            {% if form_errors(form.firstName) %}
+                <div class="alert alert-danger error-message">{{ form_errors(form.firstName) }}</div>
+            {% endif %}
+            {{ form_widget(form.lastName , {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+            {% if form_errors(form.lastName) %}
+                <div class="alert alert-danger error-message">{{ form_errors(form.lastName) }}</div>
+            {% endif %}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+            {% if form_errors(form.email) %}
+                <div class="alert alert-danger error-message">{{ form_errors(form.email) }}</div>
+            {% endif %}
+            {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}}) }}
+            {% if form_errors(form.password) %}
+                <div class="alert alert-danger error-message">{{ form_errors(form.password) }}</div>
+            {% endif %}
+            <div class="form-group roles-group">
+                {{ form_label(form.roles, 'Rôles:', {'label_attr': {'class': 'form-label'}}) }}
+                <div class="roles-checkboxes">
+                    {% for choice in form.roles %}
+                        <div class="form-check form-check-inline">
+                            {{ form_widget(choice, {'attr': {'class': 'form-check-input'}}) }}
+                            <label class="form-check-label">{{ choice.vars.label }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if form_errors(form.roles) %}
+                    <div class="alert alert-danger error-message">{{ form_errors(form.roles) }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="custom-btn btn-11">Créer compte</button>
+            <p class="message">Déjà inscrit ? <a href="#" class="toggle-link">Se connecter</a></p>
+            {{ form_end(form) }}
+        </form>
+
+        <form class="login-form">
+            <input type="text" placeholder="Nom d'utilisateur"/>
+            <input type="password" placeholder="Mot de passe"/>
+            <button class="custom-btn btn-11">Se connecter</button>
+            <p class="message">Pas encore inscrit ? <a href="class="toggle-link">Créer un compte</a></p>
+        </form>
+    </div>
+</div>
+<script src="{{ asset('BackOffice/js/FormJs.js') }}"></script>
+</body>
+</html>

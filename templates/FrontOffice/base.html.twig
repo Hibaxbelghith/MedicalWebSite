@@ -37,7 +37,7 @@
                     <div class="col-lg-6">
                         <ul class="top-bar-info list-inline-item pl-0 mb-0">
                             <li class="list-inline-item"><a href="mailto:support@gmail.com"><i class="icofont-support-faq mr-2"></i>belghith.audition@gmail.com</a></li>
-                            <li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>Aziz Centre, Manzel Bourguiba, Bizerte, Tunisia </li>
+                            <li class="list-inline-item" style="color: white"><i class="icofont-location-pin mr-2"></i>Aziz Centre, Manzel Bourguiba, Bizerte, Tunisie </li>
                         </ul>
                     </div>
                     <div class="col-lg-6">
@@ -70,10 +70,11 @@
                         <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Solutions auditives <i class="icofont-thin-down"></i></a>
+                            <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aides auditives <i class="icofont-thin-down"></i></a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown02">
-                                <li><a class="dropdown-item" href="department.html">1ére choix</a></li>
-                                <li><a class="dropdown-item" href="department-single.html">2éme choix</a></li>
+                                <li><a class="dropdown-item" href="{{ path('appareils') }}">Appareil auditif</a></li>
+                                <li><a class="dropdown-item" href="{{ path('bou') }}">Bouchons d’oreille</a></li>
+                                <li><a class="dropdown-item" href="{{ path('piles') }}">Piles et accessoires</a></li>
                             </ul>
                         </li>
 
@@ -86,6 +87,7 @@
                         </li>
 
                         <a href="{{ path ('test') }}"  class="btn btn-main-2 btn-icon btn-round-full">Test auditif en ligne<i class="icofont-simple-right ml-2  "></i></a>
+
                     </ul>
                 </div>
             </div>
@@ -99,15 +101,19 @@
     <section class="banner">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12 col-xl-7">
+                <div class="col-lg-12 ">
                     <div class="block">
                         <div class="divider mb-3"></div>
-                        <span class="text-uppercase text-sm letter-spacing ">Total Health care solution</span>
-                        <h1 class="mb-3 mt-3">L'audition pour tous</h1>
-
-                        <p class="mb-4 pr-5">A repudiandae ipsam labore ipsa voluptatum quidem quae laudantium quisquam aperiam maiores sunt fugit, deserunt rem suscipit placeat.</p>
-                        <div class="btn-container ">
-                            <a href="{{ path ('rendezVous') }}"  class="btn btn-main-2 btn-icon btn-round-full">Prendre rendez-vous <i class="icofont-simple-right ml-2  "></i></a>
+                        <span class="text-uppercase text-sm letter-spacing ">Cabinet d'audioprothèse</span>
+                        <div class="title-container">
+                            <h1 class="title-fr">L'audition pour tous</h1>
+                            <h1 class="title-ar">السمع للجميع</h1>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-xl-7">
+                            <p class="mb-4 pr-5">Bienvenue chez <strong> Belghith Audition </strong> ! Votre destination pour une audition optimale et une vie en harmonie.</p>
+                        </div>
+                            <div class="btn-container ">
+                            <a href="{{ path ('rendezVous') }}"  class="btn btn-main-2 btn-icon btn-round-full">Demander un rendez-vous <i class="icofont-simple-right ml-2  "></i></a>
                         </div>
                     </div>
                 </div>
@@ -121,12 +127,10 @@
                     <div class="feature-block d-lg-flex">
                         <div class="feature-item mb-5 mb-lg-0">
                             <div class="feature-icon mb-4">
-                                <i class="icofont-surgeon-alt"></i>
+                                <i class="icofont-verification-check"></i>
                             </div>
-                            <span>Services 24/24H</span>
-                            <h4 class="mb-3">Rendez-vous En ligne</h4>
-                            <p class="mb-4">Rendez-vous découverte gratuit et sans engagement : bilan auditif, demande de devis, découverte des solutions auditives.</p>
-                            <a href="appoinment.html" class="btn btn-main btn-round-full">Prendre rendez-vous</a>
+                            <h4 class="mb-3">Expertise</h4>
+                            <p class="mb-4">Notre équipe d’audiciens sérieuse et compétente est à votre disposition pour vous conseiller.</p>
                         </div>
 
                         <div class="feature-item mb-5 mb-lg-0">
@@ -143,10 +147,10 @@
 
                         <div class="feature-item mb-5 mb-lg-0">
                             <div class="feature-icon mb-4">
-                                <i class="icofont-heart-alt"></i>
+                                <i class="icofont-safety"></i>
                             </div>
-                            <h4 class="mb-3">Une enseigne familiale </h4>
-                            <p>« Considère chaque patient comme un membre de ta famille »</p>
+                            <h4 class="mb-3">Qualité </h4>
+                            <p>Chez Belghith Audition, nous vous proposons des produits choisis avec soin ainsi qu’un service de qualité.</p>
                         </div>
                     </div>
                 </div>
@@ -158,23 +162,23 @@
     <section class="section about">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-3 col-sm-5">
+                <div class="col-lg-2 col-sm-3">
                     <div class="about-img">
                         <img src="{{ asset('FrontOffice/images/about/img-2.jpg')}}" alt="" class="img-fluid">
                         <img src="{{ asset('FrontOffice/images/about/img-1.jpg')}}" alt="" class="img-fluid mt-4">
                     </div>
                 </div>
-                <div class="col-lg-5 col-sm-6">
-                    <div class="about-img mt-4 mt-lg-0">
+                <div class="col-lg-4 col-sm-5">
+                    <div class="about-img mt-3 mt-lg-0">
                         <img src="{{ asset('FrontOffice/images/about/img-3.jpg')}}" alt="" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <div class="about-content pl-4 mt-4 mt-lg-0">
                         <h1 class="title-color">Notre sélection d'appareils auditives</h1>
-                        <p class="mt-4 mb-5">Nous vous proposons des appareils auditifs de grandes marques mondiales au prix <b>juste, suivi et garantie 4 ans inclus.</b> Tous les appareils auditifs que nous proposons dans nos centres auditifs sont pris en charge par la sécurité sociale et les mutuelles.</p>
+                        <p class="mt-4 mb-6">Nous vous proposons des appareils auditifs de grandes marques mondiales au prix <b>juste, suivi et garantie 4 ans inclus.</b> Tous les appareils auditifs que nous proposons dans nos centres auditifs sont pris en charge par la sécurité sociale et les mutuelles.</p>
 
-                        <a href="service.html" class="btn btn-main-2 btn-round-full btn-icon">Appareils<i class="icofont-simple-right ml-3"></i></a>
+                        <a href="{{ path('produits') }}" class="btn btn-main-2 btn-round-full btn-icon">Appareils auditives<i class="icofont-simple-right ml-3"></i></a>
                     </div>
                 </div>
             </div>
@@ -222,9 +226,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7 text-center">
                     <div class="section-title">
-                        <h2>Award winning patient care</h2>
+                        <h2>Pourquoi choisir Belghith Audition ?</h2>
                         <div class="divider mx-auto my-4"></div>
-                        <p>Lets know moreel necessitatibus dolor asperiores illum possimus sint voluptates incidunt molestias nostrum laudantium. Maiores porro cumque quaerat.</p>
+                        <p>En vous rendant dans un centre Amplifon, vous pouvez vous attendre à :</p>
                     </div>
                 </div>
             </div>
@@ -300,101 +304,21 @@
                             <h4 class="mt-3 mb-3">Gynecology</h4>
                         </div>
                         <div class="content">
-                            <p class="mb-4">Saepe nulla praesentium eaque omnis perferendis a doloremque.</p>
+                            <p class="mb-4">En vous rendant dans un centre Amplifon, vous pouvez vous attendre à :</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="section appoinment">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 ">
-                    <div class="appoinment-content">
-                        <img src="images/about/img-3.jpg" alt="" class="img-fluid">
-                        <div class="emergency">
-                            <h2 class="text-lg"><i class="icofont-phone-circle text-lg"></i>+23 345 67980</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-10 ">
-                    <div class="appoinment-wrap mt-5 mt-lg-0">
-                        <h2 class="mb-2 title-color">Book appoinment</h2>
-                        <p class="mb-4">Mollitia dicta commodi est recusandae iste, natus eum asperiores corrupti qui velit . Iste dolorum atque similique praesentium soluta.</p>
-                        <form id="#" class="appoinment-form" method="post" action="#">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <select class="form-control" id="exampleFormControlSelect1">
-                                            <option>Choose Department</option>
-                                            <option>Software Design</option>
-                                            <option>Development cycle</option>
-                                            <option>Software Development</option>
-                                            <option>Maintenance</option>
-                                            <option>Process Query</option>
-                                            <option>Cost and Duration</option>
-                                            <option>Modal Delivery</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <select class="form-control" id="exampleFormControlSelect2">
-                                            <option>Select Doctors</option>
-                                            <option>Software Design</option>
-                                            <option>Development cycle</option>
-                                            <option>Software Development</option>
-                                            <option>Maintenance</option>
-                                            <option>Process Query</option>
-                                            <option>Cost and Duration</option>
-                                            <option>Modal Delivery</option>
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input name="date" id="date" type="text" class="form-control" placeholder="dd/mm/yyyy">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input name="time" id="time" type="text" class="form-control" placeholder="Time">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input name="name" id="name" type="text" class="form-control" placeholder="Full Name">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input name="phone" id="phone" type="Number" class="form-control" placeholder="Phone Number">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group-2 mb-4">
-                                <textarea name="message" id="message" class="form-control" rows="6" placeholder="Your Message"></textarea>
-                            </div>
-
-                            <a class="btn btn-main btn-round-full" href="appoinment.html" >Make Appoinment <i class="icofont-simple-right ml-2  "></i></a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="section testimonial-2 gray-bg">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="section-title text-center">
-                        <h2>We served over 5000+ Patients</h2>
+                        <h2>Nos patients parlent de nous</h2>
                         <div class="divider mx-auto my-4"></div>
-                        <p>Lets know moreel necessitatibus dolor asperiores illum possimus sint voluptates incidunt molestias nostrum laudantium. Maiores porro cumque quaerat.</p>
                     </div>
                 </div>
             </div>
@@ -419,67 +343,6 @@
                         </div>
                     </div>
 
-                    <div class="testimonial-block style-2  gray-bg">
-                        <div class="testimonial-thumb">
-                            <img src="images/team/test-thumb2.jpg" alt="" class="img-fluid">
-                        </div>
-
-                        <div class="client-info">
-                            <h4>Expert doctors!</h4>
-                            <span>Mullar Sarth</span>
-                            <p>
-                                They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat.
-                            </p>
-                        </div>
-
-                        <i class="icofont-quote-right"></i>
-                    </div>
-
-                    <div class="testimonial-block style-2  gray-bg">
-                        <div class="testimonial-thumb">
-                            <img src="images/team/test-thumb3.jpg" alt="" class="img-fluid">
-                        </div>
-
-                        <div class="client-info">
-                            <h4>Good Support!</h4>
-                            <span>Kolis Mullar</span>
-                            <p>
-                                They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat.
-                            </p>
-                        </div>
-
-                        <i class="icofont-quote-right"></i>
-                    </div>
-
-                    <div class="testimonial-block style-2  gray-bg">
-                        <div class="testimonial-thumb">
-                            <img src="images/team/test-thumb4.jpg" alt="" class="img-fluid">
-                        </div>
-
-                        <div class="client-info">
-                            <h4>Nice Environment!</h4>
-                            <span>Partho Sarothi</span>
-                            <p class="mt-4">
-                                They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat.
-                            </p>
-                        </div>
-                        <i class="icofont-quote-right"></i>
-                    </div>
-
-                    <div class="testimonial-block style-2  gray-bg">
-                        <div class="testimonial-thumb">
-                            <img src="images/team/test-thumb1.jpg" alt="" class="img-fluid">
-                        </div>
-
-                        <div class="client-info">
-                            <h4>Modern Service!</h4>
-                            <span>Kolis Mullar</span>
-                            <p>
-                                They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat.
-                            </p>
-                        </div>
-                        <i class="icofont-quote-right"></i>
-                    </div>
                 </div>
             </div>
         </div>
@@ -489,9 +352,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="section-title text-center">
-                        <h2>Partners who support us</h2>
+                        <h2>Nos Partenaires</h2>
                         <div class="divider mx-auto my-4"></div>
-                        <p>Lets know moreel necessitatibus dolor asperiores illum possimus sint voluptates incidunt molestias nostrum laudantium. Maiores porro cumque quaerat.</p>
                     </div>
                 </div>
             </div>
@@ -501,54 +363,10 @@
             <div class="row clients-logo">
                 <div class="col-lg-2">
                     <div class="client-thumb">
-                        <img src="images/about/1.png" alt="" class="img-fluid">
+                        <img src="{{ asset('FrontOffice/images/partenaire1.jpg') }}" alt="" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <div class="client-thumb">
-                        <img src="images/about/2.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="client-thumb">
-                        <img src="images/about/3.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="client-thumb">
-                        <img src="images/about/4.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="client-thumb">
-                        <img src="images/about/5.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="client-thumb">
-                        <img src="images/about/6.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="client-thumb">
-                        <img src="images/about/3.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="client-thumb">
-                        <img src="images/about/4.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="client-thumb">
-                        <img src="images/about/5.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="client-thumb">
-                        <img src="images/about/6.png" alt="" class="img-fluid">
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -562,14 +380,13 @@
                 <div class="col-lg-4 mr-auto col-sm-6">
                     <div class="widget mb-5 mb-lg-0">
                         <div class="logo mb-4">
-                            <img src="images/logo.png" alt="" class="img-fluid">
+                            <img src="{{  asset('FrontOffice/images/logo.png')}}" alt="" style="width: 120px; height: 120px;">
                         </div>
                         <p>Tempora dolorem voluptatum nam vero assumenda voluptate, facilis ad eos obcaecati tenetur veritatis eveniet distinctio possimus.</p>
 
                         <ul class="list-inline footer-socials mt-4">
-                            <li class="list-inline-item"><a href="https://www.facebook.com/themefisher"><i class="icofont-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="https://twitter.com/themefisher"><i class="icofont-twitter"></i></a></li>
-                            <li class="list-inline-item"><a href="https://www.pinterest.com/themefisher/"><i class="icofont-linkedin"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.facebook.com/profile.php?id=100064148615866"><i class="icofont-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.pinterest.com/themefisher/"><i class="icofont-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -606,23 +423,23 @@
 
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="widget widget-contact mb-5 mb-lg-0">
-                        <h4 class="text-capitalize mb-3">Get in Touch</h4>
+                        <h4 class="text-capitalize mb-3">Contactez-nous</h4>
                         <div class="divider mb-4"></div>
 
                         <div class="footer-contact-block mb-4">
                             <div class="icon d-flex align-items-center">
                                 <i class="icofont-email mr-3"></i>
-                                <span class="h6 mb-0">Support Available for 24/7</span>
+                                <span class="h6 mb-0">email</span>
                             </div>
-                            <h4 class="mt-2"><a href="tel:+23-345-67890">Support@email.com</a></h4>
+                            <h4 class="mt-2"><a href="tel:+23-345-67890">belghith.audition@gmail.com</a></h4>
                         </div>
 
                         <div class="footer-contact-block">
                             <div class="icon d-flex align-items-center">
                                 <i class="icofont-support mr-3"></i>
-                                <span class="h6 mb-0">Mon to Fri : 08:30 - 18:00</span>
+                                <span class="h6 mb-0">Lund a Samd : 08:30 - 18:00</span>
                             </div>
-                            <h4 class="mt-2"><a href="tel:+23-345-67890">+23-456-6588</a></h4>
+                            <h4 class="mt-2"><a href="tel:+23-345-67890">+216 27 817 104</a></h4>
                         </div>
                     </div>
                 </div>
@@ -632,22 +449,14 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-lg-6">
                         <div class="copyright">
-                            &copy; Copyright Reserved to <span class="text-color">Novena</span> by <a href="https://themefisher.com/" target="_blank">Themefisher</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="subscribe-form text-lg-right mt-5 mt-lg-0">
-                            <form action="#" class="subscribe">
-                                <input type="text" class="form-control" placeholder="Your Email address">
-                                <a href="#" class="btn btn-main-2 btn-round-full">Subscribe</a>
-                            </form>
+                            &copy; Belghith Audition, 2024
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4">
-                        <a class="backtop js-scroll-trigger" href="#top">
+                    <div class="col-lg-12 text-right">
+                        <a class="backtop" href="#top" id="btn-back-to-top" >
                             <i class="icofont-long-arrow-up"></i>
                         </a>
                     </div>
@@ -659,7 +468,7 @@
 
 {% block js %}
     <!-- Main jQuery -->
-    <script src="plugins/jquery/jquery.js"></script>
+    <script src="plugins/jquery/jquery.js"></script>9/
     <!-- Bootstrap 4.3.2 -->
     <script src="plugins/bootstrap/js/popper.js"></script>
     <script src="plugins/bootstrap/js/bootstrap.min.js"></script>

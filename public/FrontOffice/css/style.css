@@ -11,6 +11,7 @@ Version: 1.0.0
 @import url("https://fonts.googleapis.com/css?family=Exo:500,600,700|Roboto&display=swap");
 html {
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -28,33 +29,18 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     color: #222;
 }
 
-h1, .h1 {
-    font-size: 2.5rem;
+.titles{
+    color: rgb(96, 96, 96);
 }
 
-h2, .h2 {
-    font-size: 44px;
-}
-
-h3, .h3 {
-    font-size: 1.5rem;
-}
-
-h4, .h4 {
-    font-size: 1.3rem;
+p, li{
     line-height: 30px;
+    color: #707070;
 }
 
-h5, .h5 {
-    font-size: 1.25rem;
-}
 
-h6, .h6 {
-    font-size: 1rem;
-}
-
-p {
-    line-height: 30px;
+li::marker{
+    color: #e12454;
 }
 
 .navbar-toggle .icon-bar {
@@ -90,7 +76,6 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 .btn {
     display: inline-block;
     font-size: 14px;
-    font-size: 0.8125rem;
     font-weight: 700;
     letter-spacing: .5px;
     padding: .75rem 2rem;
@@ -290,7 +275,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 /* Links */
 a {
-    color: #222;
+    color: rgba(34, 58, 102, 0.95);
     text-decoration: none;
     transition: all .35s ease;
 }
@@ -425,7 +410,6 @@ a:focus {
     border-bottom: 1px solid #eee;
     background: transparent;
     font-weight: 400;
-    color: #555;
 }
 
 .dropdown .dropdown-item:hover {
@@ -780,7 +764,6 @@ a:focus {
 
 .doctor-info li {
     margin-bottom: 10px;
-    color: #222;
 }
 
 .doctor-info li i {
@@ -848,7 +831,7 @@ a:focus {
 }
 
 .cta-2 {
-    background: url("../images/bg/cta-bg.png") no-repeat;
+    background: url("../images/bg/banner.jpg") no-repeat;
     background-position: center center;
 }
 
@@ -1463,34 +1446,52 @@ a:focus {
     top: 6px;
 }
 
-.backtop {
-    position: fixed;
-    background: #e12454;
-    z-index: 9999;
-    display: inline-block;
-    right: 55px;
-    width: 60px;
-    height: 60px;
-    bottom: 50px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    border-radius: 50px;
-}
-
-.backtop i {
-    color: #fff;
-    font-size: 20px;
-}
-
 .reveal {
     transition: all .3s;
     cursor: pointer;
     opacity: 1;
 }
 
+.title-container {
+    display: flex;
+    justify-content: space-between; /* Pousse les titres aux extrémités */
+    align-items: center; /* Aligne verticalement les titres */
+}
 
+.title-fr {
+    text-align: left;
+    flex: 1; /* Prend l'espace restant */
+}
 
-/*# sourceMappingURL=maps/style.css.map */
+.title-ar {
+    text-align: right;
+    margin-left: auto; /* Pousse le titre arabe vers la droite */
+    direction: rtl; /* Assure la direction du texte arabe */
+}
+
+.backtop {
+    display: block;
+    background-color: #ff265f; /* Couleur de fond du cercle */
+    color: #fff; /* Couleur de l'icône */
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    z-index: 9999;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.backtop i {
+    font-size: 24px; /* Taille de l'icône */
+}
+
+.backtop:hover {
+    background-color: #e12454; /* Changer la couleur au survol */
+    color: #fff;
+}
+

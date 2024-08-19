@@ -1,0 +1,171 @@
+{% extends 'FrontOffice/base.html.twig' %}
+
+
+
+{% block body %}
+
+    <section class="page-title bg-1">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block text-center">
+                        <span class="text-white"> Aides auditives </span>
+                        <h1 class="text-capitalize mb-5 text-lg">Appareil auditif, tout ce que vous devez savoir</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section about-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <p>
+                        Tous les appareils auditifs fonctionnent selon le même principe : ils captent les bruits ambiants ; le son est alors traité sous forme d’impulsions électriques, puis une fois modulé, il est transmis à l’oreille. Toutefois, selon le degré de gravité de la perte auditive et des besoins du patient, les modèles d’appareils auditifs sont sensiblement différents. Ils se distinguent non seulement de par leur taille et de par leur forme, mais également en termes de caractéristiques et de fonctions. Quel appareil auditif vous convient le mieux ? Belghith Audition vous répond.
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <div class="sidebar-widget schedule-widget mb-3">
+                        <h5 class="mb-3">Prenez rendez-vous avec Belghith Audition</h5>
+                        <ul class="list-unstyled">
+                            <a href="{{ path ('rendezVous') }}"  class="btn btn-main-2 btn-icon btn-round-full">Demander un rendez-vous en 2 minutes</a>
+                        </ul>
+                        <div class="sidebar-contatct-info mt-4">
+                            <p class="mb-0">Besoin d'informations?</p>
+                            <h3>+216 27 817 104</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section department-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3 class="mt-5 mb-4">Vue d'ensemble</h3>
+                        <div class="divider my-4"></div>
+                        <ul class="list-unstyled department-service">
+                            <li class="h5" ><i class="icofont-check mr-2"></i><a href="#perte-auditive">Comment savoir si j'ai une perte auditive </a>?</li>
+                            <li class="h5"><i class="icofont-check mr-2"></i><a href="#fonctionnement-auditifs">Le fonctionnement des appareils auditifs</a></li>
+                            <li class="h5"><i class="icofont-check mr-2"></i><a href="#choisir-auditif" >Comment choisir son appareil auditif ?</a></li>
+                            <li class="h5"><i class="icofont-check mr-2"></i><a href="#vie-aides-auditives">La vie avec des aides auditives</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        <div class="container" id="perte-auditive" >
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="titles mt-5 mb-4">Comment savoir si j'ai une perte auditive ?</h3>
+                    <p>Comme votre corps, votre système auditif vieillit et, naturellement, votre audition s’affaiblit au fil des années. Il s’agit en général d’une perte progressive de votre audition qui s’accroit avec le temps. On parle alors de « surdité légère ». Cette surdité peut devenir plus importante avec le temps, on parle alors de « surdité moyenne » puis de « surdité sévère ».
+                        Il est donc important de pouvoir s’en rendre compte mais aussi de connaître les différents types de pertes auditives.
+                        Certains signent peuvent vous mettre sur la voie :</p>
+                    <ul>
+                        <li>Vous avez l’impression de ne pas comprendre certains de vos interlocuteurs ou de ne pas réussir à suivre une conversation dans un milieu bruyant ? Vous faites souvent répéter les personnes ?</li>
+                        <li>Vous augmentez très fréquemment le son de votre téléviseur ?</li>
+                        <li>Vous distinguez moins bien certains sons de votre quotidien comme la sonnerie de votre smartphone ou le bruit du clignotant de votre voiture ?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="fonctionnement-auditifs">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="titles mt-5 mb-4">Le fonctionnement des appareils auditifs</h3>
+                    <p>Un appareil auditif, aussi appelé aide auditive, est un appareil miniature qui capte, amplifie via plusieurs canaux, rehausse la parole et diffuse à votre oreille interne les sons que vous entendez mal. Selon les modèles, l’appareil auditif se positionne directement dans l’oreille ou est composé de deux parties :</p>
+                    <ul>
+                        <li>Une première partie à placer derrière le pavillon de votre oreille. </li>
+                        <li> Une seconde partie reliée à la première et qui se place dans l’oreille : un tube restituant le son ou un écouteur.</li>
+                    </ul>
+                    <br>
+                    <p>Le fonctionnement des appareils auditifs se fait toujours selon le même principe :</p>
+                    <ul>
+                        <li>Ils <strong>captent</strong> les sons ambiants grâce à un microphone.</li>
+                        <li>Ils <strong>convertissent</strong> ces sons, <strong>modulent</strong> leur intensité et les <strong>amplifient</strong> grâce à un amplificateur ;</li>
+                        <li>Ils les <strong>diffusent</strong> à votre oreille interne grâce à un écouteur.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="choisir-auditif">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="titles mt-5 mb-4">Comment choisir son appareil auditif ?</h3>
+                    <h5 class="mt-5 mb-2" style="color: black">Les critères à prendre en compte</h5>
+                    <p>Vos aides auditives doivent prendre en compte plusieurs facteurs. Dans tous les cas, l’aide d’un <strong style="color: #e12454">professionnel audioprothésiste</strong> est recommandée pour faire le bon choix.
+                        Chez AuditionSanté nous vous recommandons de procéder à un test auditif complet et personnalisé dans un de nos centres afin de mieux vous accompagner, et vous aider à trouver le meilleur appareil auditif.</p>
+                    <ul>
+                        <li>Quel est <strong style="color: #e12454">le degré de votre perte auditive</strong> ? S’agit-il d’une perte d’audition légère ou plus prononcée ? </li>
+                        <li> <strong>Quel est votre mode de vie ?</strong> Évoluez-vous dans un milieu plutôt calme ou dans un milieu plutôt bruyant ? Cela est un critère important à prendre en compte afin de bien vivre avec vos appareils auditifs.</li>
+                        <li> <strong>Quelles sont vos exigences en matière de confort et de discrétion ?</strong> Ces critères vous permettront d’effectuer un choix entre les différents types d’aides auditives qui existent dont certaines sont presque invisibles.</li>
+                        <li> <strong>Quel est votre budget ?</strong> Le prix des aides auditives varie en fonction des modèles. Il faudra évidemment prendre en compte dans votre calcul le niveau de remboursement de votre mutuelle et les nouvelles conditions spéciales accordées grâce à <strong style="color: #e12454">la Réforme 100% Santé du Gouvernement.</strong> </li>
+                    </ul>
+                    <br>
+                    <h5 class="mt-5 mb-2" style="color: black">Les différentes catégories de prothèses auditives</h5>
+                    <p>Selon votre niveau de perte auditive et vos besoins, les modèles d’appareils auditifs sont sensiblement différents. Ils se distinguent non seulement par leur taille et par leur forme, mais également en termes de caractéristiques et de fonctions. Découvrez notre guide détaillé pour choisir un appareil auditif.</p>
+                    <ul>
+                        <li>Les appareils auditifs intra-auriculaires. </li>
+                        <li> Les contours d'oreille BTE.</li>
+                        <li> Les contours d'oreille à écouteur déporter RIC. </li>
+                    </ul>
+                    <h5 class="mt-5 mb-2" style="color: black">Aides auditives rechargeables ou à piles ?</h5>
+                    <p>Lorsque vous choisissez vos aides auditives, il est aussi important de prendre en compte une caractéristique technique : sont-elles rechargeables et comment se déroule la recharge ? <br>
+                        En effet, beaucoup d’appareils auditifs fonctionnent avec des piles non rechargeables qu’il vous faudra donc régulièrement changer. Les modèles les plus récents sont quant à eux « rechargeables », c’est-à-dire qu’ils fonctionnent avec des batteries rechargeables.</p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="vie-aides-auditives" >
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="titles mt-5 mb-4">La vie avec des aides auditives</h3>
+                    <p>Le port d'appareils auditifs peut permettre d'augmenter considérablement le confort de vie. Découvrez ci-dessous tout ce qu’il faut savoir lorsqu'on vit avec des appareils auditifs. Si vous souhaitez en savoir plus, vous pouvez également aller lire notre guide détaillé pour bien vivre avec des appareils auditifs.</p>
+                    <h5 class="mt-5 mb-2" style="color: black">Comment s'habituer aux appareils auditifs ?</h5>
+                    <p>Le port d'appareils auditifs peut nécessiter un certain temps d'adaptation, notamment à cause de la sensation d'avoir quelque chose dans les oreilles, au son différent et potentiellement plus fort, ou au processus de compréhension de la parole. Voici quelques étapes à suivre pour s'habituer à ses nouveaux appareils auditifs : </p>
+                    <ul>
+                        <li>Porter les appareils par intermittence dans  <strong>un environnement calme.</strong> </li>
+                        <li>Porter les appareils dans  <strong>des environnements bruyants.</strong> </li>
+                        <li>Demander l'aide d'un <strong>audioprothésiste.</strong> </li>
+                    </ul>
+                    <br>
+                    <h5 class="mt-5 mb-2" style="color: black">Entretenir ses appareils auditifs</h5>
+                    <p>Pour garantir un fonctionnement optimal de vos appareils auditifs, il est important de les entretenir et de les nettoyer régulièrement. En effet, l’accumulation de cérumen ou d'autres débris peut obstruer les microphones et les conduits auditifs, ce qui peut entraîner une perte de qualité sonore ou des dysfonctionnements. Voici quelques éléments qu'il est important de connaître pour entretenir et prolonger la durée de vie de vos aides auditives : </p>
+                    <ol>
+                        <li><strong>Produits de nettoyage : </strong>  : nettoyez vos appareils auditifs tous les jours avec des outils de nettoyage spécifiques fournis par votre audioprothésiste. </li>
+                        <li><strong>Lieux de stockage :  </strong> stockez les appareils auditifs dans un endroit sec et sûr, à l'abri de l'humidité et de la chaleur. </li>
+                        <li><strong>Piles pour appareil auditif : </strong> les piles des appareils auditifs doivent être remplacées régulièrement. </li>
+                        <li><strong>Vérification régulière :</strong> il est recommandé de faire vérifier régulièrement vos appareils auditifs par un professionnel pour s'assurer qu'ils fonctionnent correctement et pour effectuer les ajustements nécessaires.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section cta-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="cta-content">
+                        <div class="divider mb-4"></div>
+                        <h2 class="mb-5 text-lg text-white">Nos Appareils Auditifs</h2>
+                        <a href="{{ path('produits') }}" class="btn btn-main-2 btn-round-full">Explorez<i class="icofont-simple-right  ml-2"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
+

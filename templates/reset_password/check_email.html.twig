@@ -1,0 +1,15 @@
+{% extends 'security/registration.html.twig' %}
+{% block title %} Récupération du mot de passe {% endblock %}
+
+{% block content %}
+<div class="login-page">
+    <div class="form">
+        <img src="{{ asset('FrontOffice/images/logo.png') }}" alt="Logo" width="100" height="100" />
+    <p>
+        Si un compte correspondant à votre e-mail existe, cela signifie qu'un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
+        Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p>Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam ou <a href="{{ path('app_forgot_password_request') }}">essayer à nouveau</a>.</p>
+    </div>
+</div>
+{% endblock %}

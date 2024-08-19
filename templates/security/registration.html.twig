@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Inscription  {% endblock %}</title>
+    {% block css %}
+        <link href="{{ asset('BackOffice/css/FormStyle.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <div class="login-page">
+        <div class="form">
+            <img src="{{ asset('FrontOffice/images/logo.png') }}" alt="Logo" width="100" height="100" />
+            <form class="login-form" method="post" novalidate>
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                {% if form_errors(form.firstName) %}
+                    <div class="alert alert-danger error-message">{{ form_errors(form.firstName) }}</div>
+                {% endif %}
+                {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                {% if form_errors(form.lastName) %}
+                    <div class="alert alert-danger error-message">{{ form_errors(form.lastName) }}</div>
+                {% endif %}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                {% if form_errors(form.email) %}
+                    <div class="alert alert-danger error-message">{{ form_errors(form.email) }}</div>
+                {% endif %}
+                <div class="password-container">
+                    {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe', 'id': 'password'}}) }}
+                    <i class="fa fa-eye" id="togglePassword"></i>
+                </div>
+                {% if form_errors(form.password) %}
+                    <div class="alert alert-danger error-message">{{ form_errors(form.password) }}</div>
+                {% endif %}
+
+                <div class="password-container">
+                    {{ form_widget(form.repeatPassword, {'attr': {'class': 'form-control', 'placeholder': 'Répétez le mot de passe', 'id': 'repeatPassword'}}) }}
+                    <i class="fa fa-eye" id="toggleRepeatPassword"></i>
+                </div>
+
+                {% if form_errors(form.repeatPassword) %}
+                    <div class="alert alert-danger error-message">{{ form_errors(form.repeatPassword) }}</div>
+                {% endif %}
+                <button type="submit" class="custom-btn btn-11">Créer compte</button>
+                {{ form_end(form) }}
+                <p class="message">Déjà inscrit ? <a href="{{ path('app_login') }}">Connectez-vous</a></p>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+</body>
+</html>

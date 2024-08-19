@@ -1,0 +1,8 @@
+{% extends 'Backoffice/base.html.twig' %}
+
+{% block title %} Mon profile {% endblock %}
+
+{% block body %}
+    <h2 class="mt-4">Profile</h2>
+    <li><a href="{{ path('app_account_update_password') }}">Modifier mot de passe</a></li>
+{% endblock %}

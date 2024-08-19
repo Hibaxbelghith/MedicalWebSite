@@ -1,0 +1,35 @@
+{% extends 'security/registration.html.twig' %}
+{% block title %} Connexion {% endblock %}
+{% block content %}
+<div class="login-page">
+    <div class="form">
+        <img src="{{ asset('FrontOffice/images/logo.png') }}" alt="Logo" width="100" height="100" />
+            <form class="login-form" method="post" novalidate>
+                {% if error %}
+                    {% if foundUser is null %}
+                        <div class="alert alert-danger error-message">L'email n'existe pas !</div>
+                    {% else %}
+                        <div class="alert alert-danger error-message">Veuillez vérifier votre mot de passe</div>
+                    {% endif %}
+                {% endif %}
+                <br>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="email" autocomplete="email" autofocus required/>
+                <input type="password" name="password" id="inputPassword" autocomplete="current-password" placeholder="mot de passe" required />
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                    </label>
+                </div>
+            <br>
+                <p class="message"><a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié? </a></p>
+                <button class="custom-btn btn-11" >Me connecter</button>
+                <p class="message">Vous n'avez pas du compte? <a href="{{ path('app_register') }}">M'inscrire</a></p>
+            </form>
+</div>
+</div>
+{% endblock %}

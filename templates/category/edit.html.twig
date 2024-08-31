@@ -1,0 +1,15 @@
+{% extends 'Backoffice/base.html.twig' %}
+
+{% block title %}Modifier catégorie{% endblock %}
+
+{% block body %}
+
+
+
+    {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_category_index') }}">Retourner a la liste</a>
+
+    {{ include('category/_delete_form.html.twig') }}
+
+{% endblock %}

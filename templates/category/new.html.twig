@@ -1,0 +1,11 @@
+{% extends 'Backoffice/base.html.twig' %}
+
+{% block title %}Nouvelle catégorie{% endblock %}
+
+{% block body %}
+    <h2 class="mt-4" >Ajout d'une catéorie</h2>
+
+    {{ include('category/_form.html.twig') }}
+        <a class="btn btn-primary" href="{{ path('app_category_index') }}">Retourner</a>
+{% endblock %}
+

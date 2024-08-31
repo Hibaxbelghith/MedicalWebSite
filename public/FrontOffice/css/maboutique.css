@@ -1,0 +1,80 @@
+.card{
+    height: 550px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-item {
+    margin-top: 50px;
+}
+
+.product-item .product-subtitle {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.product-item .product-price {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.product-image {
+    width: 200px;
+    height: 200px;
+}
+
+.product-page-price {
+    font-size: 18px;
+}
+
+.btn-card {
+    border-radius: 50px; /* Rayon de bordure pour arrondir les coins */
+    border: 2px solid #e12454; /* Couleur de la bordure */
+    background-color: white; /* Couleur de fond par défaut */
+    color: #e12454; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement interne pour un meilleur affichage */
+    font-size: 16px; /* Taille du texte */
+    transition: background-color 0.3s, color 0.3s; /* Animation de transition douce */
+}
+
+.btn-card:hover {
+    background-color: #e12454; /* Changement de couleur de fond au survol */
+    color: white; /* Couleur du texte au survol */
+}
+
+.btn-card-buy{
+    border-radius: 50px; /* Rayon de bordure pour arrondir les coins */
+    border: #e12454;
+    padding: 20px 30px; /* Espacement interne pour un meilleur affichage */
+    background-color: #e12454; /* Changement de couleur de fond au survol */
+    color: white; /* Couleur du texte au survol */
+}
+
+.btn-card-panier{
+    border-radius: 50px; /* Rayon de bordure pour arrondir les coins */
+    border: #223a66;
+    padding: 20px 30px; /* Espacement interne pour un meilleur affichage */
+    background-color: #223a66; /* Changement de couleur de fond au survol */
+    color: white; /* Couleur du texte au survol */
+}
+
+.pagination .page-link {
+    background-color: #fa386d; /* Couleur de fond rose */
+    border-color: #fa386d;     /* Bordure rose */
+    color: white;              /* Couleur du texte */
+}
+
+.pagination .page-link:hover {
+    background-color: #e12454; /* Couleur de fond rose foncé au survol */
+    border-color: #e12454;     /* Bordure rose foncé au survol */
+}
+
+.pagination .active .page-link {
+    background-color: #e12454; /* Couleur de fond rose foncé pour la page active */
+    border-color: #e12454;     /* Bordure rose foncé pour la page active */
+    color: white;
+}

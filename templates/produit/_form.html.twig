@@ -1,0 +1,44 @@
+<div class="container mt-5">
+    {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}})}}
+    <div class="mb-3">
+        {{ form_label(form.nom, 'nom', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.nom, {'attr': {'class': 'text-danger'}}) }}</div>
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.description, 'description', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.prix, 'prix', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.prix, {'attr': {'class': 'text-danger'}}) }}</div>
+    </div>
+
+    <div class="form-group">
+        <label>Importer une image</label>
+        <div class="input-group col-xs-12">
+              <span class="input-group-append">
+           {{ form_widget(form.imageProduit) }}
+              </span>
+        </div>
+        {% if form_errors(form.imageProduit) %}
+            <div class="text-danger">{{ form_errors(form.imageProduit) }}</div>
+        {% endif %}
+
+        {% if produit.imageProduit %}
+            <br>
+            <img src="{{ asset('BackOffice/img/' ~ produit.imageProduit) }}" alt="Image" width="150">
+        {% endif %}
+    </div>
+
+
+    <div class="mb-3">
+        {{ form_label(form.categorie, 'categorie',{'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.categorie, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.categorie, {'attr': {'class': 'text-danger'}}) }}</div>
+    </div>
+
+    <button type="submit" class="btn" style="background-color: rgb(251,33,117); color: white;">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+</div>

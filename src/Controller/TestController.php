@@ -7,26 +7,33 @@ use App\Repository\UserRepository;
 use Mailjet\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use \Mailjet\Resources;
 
 class TestController extends AbstractController
 {
-    #[Route('/home', name: 'home')]
-    public function index(): Response
-    {
-        return $this->render('FrontOffice/base.html.twig', [
-            'controller_name' => 'TestController',
-        ]);
-    }
 
-    //OnlineTest
-    #[Route('/home/test', name: 'test')]
-    public function Audiotest(): Response
+    private $session;
+    public function __construct(private RequestStack $requestStack)
     {
-        return $this->render('FrontOffice/OnlineTest.html.twig', [
-            'controller_name' => 'TestController',
+        $this->session = $this->requestStack->getSession();
+    }
+    #[Route('/home', name: 'home')]
+    public function index(Security $security): Response
+    {
+        //$this->session->set('test', [
+        //    'id' => 15
+        //]);
+
+        $session = $this->session->remove('test');
+        $user = $security->getUser();
+
+        return $this->render('FrontOffice/base.html.twig', [
+            'session' => $session,
+            'user' => $user,
         ]);
     }
 
@@ -65,7 +72,7 @@ class TestController extends AbstractController
     #[Route('/home/produits', name: 'produits')]
     public function Produits(): Response
     {
-        return $this->render('FrontOffice/produits.html.twig'
+        return $this->render('FrontOffice/nosAppareils.html.twig'
         );
     }
 
@@ -82,6 +89,7 @@ class TestController extends AbstractController
         return $this->render('FrontOffice/piles.html.twig'
         );
     }
+
 
 
 

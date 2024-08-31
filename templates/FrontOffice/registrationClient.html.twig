@@ -1,0 +1,172 @@
+{%  extends 'FrontOffice/base.html.twig'%}
+
+{% block title %} Inscription {% endblock %}
+
+
+{% block body %}
+
+    <section>
+        <div class=" body">
+            <div class="row">
+
+                <div class="login-page">
+                    <div class="form">
+                        <form class="login-form" method="post" novalidate>
+                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                            {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                            {% if form_errors(form.firstName) %}
+                                <div class="alert alert-danger error-message">{{ form_errors(form.firstName) }}</div>
+                            {% endif %}
+                            {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                            {% if form_errors(form.lastName) %}
+                                <div class="alert alert-danger error-message">{{ form_errors(form.lastName) }}</div>
+                            {% endif %}
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                            {% if form_errors(form.email) %}
+                                <div class="alert alert-danger error-message">{{ form_errors(form.email) }}</div>
+                            {% endif %}
+                            <div class="password-container">
+                                {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe', 'id': 'password'}}) }}
+                            </div>
+                            {% if form_errors(form.password) %}
+                                <div class="alert alert-danger error-message">{{ form_errors(form.password) }}</div>
+                            {% endif %}
+
+                            <div class="password-container">
+                                {{ form_widget(form.repeatPassword, {'attr': {'class': 'form-control', 'placeholder': 'Répétez le mot de passe', 'id': 'repeatPassword'}}) }}
+                            </div>
+
+                            {% if form_errors(form.repeatPassword) %}
+                                <div class="alert alert-danger error-message">{{ form_errors(form.repeatPassword) }}</div>
+                            {% endif %}
+                            <button type="submit" class="custom-btn btn-11">Créer compte</button>
+                            {{ form_end(form) }}
+                            <p class="message">Déjà inscrit ? <a href="{{ path('client_login') }}">Connectez-vous</a></p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        header {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-page {
+            width: 400px;
+            padding: 8% 0 0;
+            margin: auto;
+        }
+        .form {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 350px;
+            margin: 0 auto 100px;
+            padding: 30px 50px 50px 50px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+        .form input {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .form button:hover,.form button:active,.form button:focus {
+            background: #ec4c84;
+        }
+        .form .message {
+            margin: 15px 0 0;
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+        .form .message a {
+            color: #d61d5e;
+            text-decoration: none;
+        }
+
+        .body {
+            background: #d8326c;
+            font-family: "Roboto", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .custom-btn {
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            background: #d61d5e ;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+            7px 7px 20px 0px rgba(0,0,0,.1),
+            4px 4px 5px 0px rgba(0,0,0,.1);
+            outline: none;
+        }
+
+        .btn-11 {
+            border: none;
+            background: rgb(251,33,117);
+            background: linear-gradient(0deg, rgba(251,33,117,1) 0%, rgba(234,76,137,1) 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+        .btn-11:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+        .btn-11:before {
+            position: absolute;
+            content: '';
+            display: inline-block;
+            top: -180px;
+            left: 0;
+            width: 30px;
+            height: 100%;
+            background-color: #fff;
+            animation: shiny-btn1 3s ease-in-out infinite;
+        }
+        .btn-11:hover{
+            opacity: .7;
+        }
+        .btn-11:active{
+            box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+            -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255,255,255,.2),
+            inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+        }
+
+        @-webkit-keyframes shiny-btn1 {
+            0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
+            80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
+            81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
+            100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+        }
+
+
+    </style>
+
+{% endblock %}

@@ -1,336 +1,123 @@
 {% extends 'FrontOffice/base.html.twig' %}
 
+
+
 {% block body %}
-    <section class="page-title bg-1">
-        <div class="overlay"></div>
-        <div class="container">
+
+<section class="page-title bg-1">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block text-center">
+                    <span class="text-white"> Accueil </span>
+                    <h1 class="text-capitalize mb-5 text-lg">Accessoires</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section>
+        <div class="container py-5">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="block text-center">
-                        <span class="text-white"> Aides auditives </span>
-                        <h1 class="text-capitalize mb-5 text-lg">Nos Appareils Auditives</h1>
+
+                <!-- Section filtres -->
+                <div class="col-md-3">
+                    <!--<div class="sticky-top">  Cette classe permet de garder les filtres visibles lors du défilement -->
+                    <h4>Filtres produits</h4>
+                    {{ form_start(form) }}
+                    <div class="input-group mb-3">
+                        {{ form_widget(form.SearchName, {'attr': {'class': 'form-control', 'placeholder': 'Rechercher...'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.SearchCategory) }}
+                        <div class="filter-categories">
+                            {% for child in form.SearchCategory %}
+                                <div class="form-check">
+                                    {{ form_widget(child, {'attr': {'class': 'form-check-input'}}) }}
+                                    {{ form_label(child, null, {'attr': {'class': 'form-check-label'}}) }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+
+                <!-- Section produits -->
+                <div class="col-md-9">
+                    <div class="row">
+                        {% for p in produits %}
+                            <div class="col-md-4 mb-4">
+                                <div class="card h-100" style="border-radius: 15px;">
+                                    <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
+                                         data-mdb-ripple-color="light">
+                                        <a href="/produitFront/{{ p.id }}" class="d-block bg-image hover-overlay ripple ripple-surface ripple-surface-light">
+                                            <img src="/BackOffice/img/{{ p.imageProduit }}"
+                                                 style="padding: 30px" class="img-fluid"
+                                                 alt="{{ p.nom }}" />
+                                        </a>
+                                    </div>
+                                    <div class="card-body d-flex flex-column">
+                                        <!-- Fixed height for product name -->
+                                        <div class="mb-2" style="min-height: 50px;">
+                                            <h5><a href="{{ path('app_produit_details', { 'id': p.id }) }}" class="text-dark">{{ p.nom }}</a></h5>
+                                        </div>
+                                        <!-- Fixed height for product description -->
+                                        <div class="mb-3" style="min-height: 30px;">
+                                            <p class="small text-muted">Livraison à domicile</p>
+                                        </div>
+                                        <!-- Fixed height for product price -->
+                                        <div class="mb-4" style="min-height: 30px;">
+                                            <p class="text-dark">{{ p.prix | number_format(2, '.', '') }} DT</p>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center align-items-center mt-auto">
+                                            <a href="{{ path('add_cart', {id : p.id}) }}"><button type="submit" class="btn-card">Ajouter au panier</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
+
+                <nav aria-label="Page navigation exemple">
+                    <ul class="pagination">
+                        {% if currentPage > 1 %}
+                            <li class="page-item">
+                                <a href="{{ path('app_produit_front', app.request.query.all|merge({'page': currentPage - 1})) }}" class="page-link">
+                                    <span aria-hidden="true" >&laquo; Précédent</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% for i in 1..totalPages %}
+                            <li class="page-item {{ currentPage == i ? 'active' : '' }}">
+                                <a href="{{ path('app_produit_front', app.request.query.all|merge({'page': i})) }}" class="page-link">
+                                    {{ i }}
+                                </a>
+                            </li>
+                        {% endfor %}
+
+                        {% if currentPage < totalPages %}
+                            <li class="page-item">
+                                <a href="{{ path('app_produit_front', app.request.query.all|merge({'page': currentPage + 1})) }}" class="page-link">
+                                    <span aria-hidden="true" >Suivant &raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+
+
             </div>
         </div>
     </section>
 
-    <!-- portfolio -->
-    <section class="section doctors">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 text-center">
-                    <div class="section-title">
-                        <h2>Modèles d’aides auditives</h2>
-                        <div class="divider mx-auto my-4"></div>
-                        <p>Nous vous proposons trois modèles d’appareils auditifs. Renseignez-vous sur chacun pour découvrir quel modèle d’aide auditive vous convient.</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-12 text-center mb-5">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn active">
-                        <input type="radio" name="shuffle-filter" value="cat0" checked="checked" />Contour (BTE)
-                    </label>
-                    <label class="btn">
-                        <input type="radio" name="shuffle-filter" value="cat1" />microRIC (RIC)
-                    </label>
-                    <label class="btn">
-                        <input type="radio" name="shuffle-filter" value="cat2" />ITE (intra-conque)
-                    </label>
-                    <label class="btn">
-                        <input type="radio" name="shuffle-filter" value="cat3" />Intra-conduit (ITC)
-                    </label>
-                    <label class="btn">
-                        <input type="radio" name="shuffle-filter" value="cat4" />Semi-profond (CIC)
-                    </label>
-                    <label class="btn">
-                        <input type="radio" name="shuffle-filter" value="cat5" />Intra-profond (IIC)
-                    </label>
-                </div>
-            </div>
+{%endblock %}
 
-            <!-- BTE -->
-            <div class="row shuffle-wrapper portfolio-gallery">
-                <section class="section doctor-single" id="cat0-section">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="doctor-img-block">
-                                    <img src="{{ asset('FrontOffice/images/team/1.png')}}" alt="" class="img-fluid w-100">
-                                </div>
-                            </div>
-                            <div class="col-lg-9 col-md-6">
-                                <div class="doctor-details mt-4 mt-lg-0">
-                                    <h2 class="text-md">Contour (BTE)</h2>
-                                    <div class="divider my-4"></div>
-                                    <p>Un tube transparent relie l'appareil à un embout auriculaire créé sur mesure pour s’adapter parfaitement à votre conduit auditif. Ces appareils auditifs peuvent être utilisés partout, tout le temps.</p>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <h4 class="mt-2 mb-3" style="color: #223a66;">Les avantages</h4>
-                                                <ul class="list-unstyled department-service">
-                                                    <li><i class="icofont-check mr-2"></i>Taille adaptée à la prise en main et à la dextérité.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Quasi-invisible derrière l'oreille malgré leur taille.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Une pile de plus grande capacité pour une durée de vie prolongée - également disponible en version rechargeable.</li>
-                                                    <li><i class="icofont-check mr-2"></i>N'obstrue pas l'oreille donc offre une écoute naturelle.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                        <div class="col-auto">
-                            <img src="{{ asset('FrontOffice/images/team/bte.png')}}" alt="" class="img-fluid w-100">
-                        </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Appareil 2 -->
-                <section class="section doctor-single" id="cat1-section" style="display: none;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="doctor-img-block">
-                                    <img src="{{ asset('FrontOffice/images/team/2.png')}}" alt="" class="img-fluid w-100">
-                                </div>
-                            </div>
-                            <div class="col-lg-9 col-md-6">
-                                <div class="doctor-details mt-4 mt-lg-0">
-                                    <h2 class="text-md">Micro contour à écouteur déporté (RIC)</h2>
-                                    <div class="divider my-4"></div>
-                                    <p>Petits, discrets et rapides à poser. Parfaits pour les primo-utilisateurs.</p>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <h4 class="mt-2 mb-3" style="color: #223a66;">Les avantages</h4>
-                                                <ul class="list-unstyled department-service">
-                                                    <li><i class="icofont-check mr-2"></i>Plus petit et discret qu’un contour d’oreille.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Offre une qualité sonore plus naturelle de la voix en position ouverte.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Aide auditive ayant un design élégant.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Étanche, fiable et davantage de fonctionnalités - option rechargeable disponible sur certains modèles.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-auto">
-                                <img src="{{ asset('FrontOffice/images/team/esseyage2.png')}}" alt="" style="width: 600px; height: auto;">
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
-
-                <!-- Appareil 3 -->
-                <section class="section doctor-single" id="cat2-section" style="display: none;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="doctor-img-block">
-                                    <img src="{{ asset('FrontOffice/images/team/3.png')}}" alt="" class="img-fluid w-100">
-                                </div>
-                            </div>
-                            <div class="col-lg-9 col-md-6">
-                                <div class="doctor-details mt-4 mt-lg-0">
-                                    <h2 class="text-md">ITE (intra-conque)</h2>
-                                    <div class="divider my-4"></div>
-                                    <p>Une aide auditive sur mesure qui se loge dans la partie extérieure de l'oreille.</p>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <h4 class="mt-2 mb-3" style="color: #223a66;">Les avantages</h4>
-                                                <ul class="list-unstyled department-service">
-                                                    <li><i class="icofont-check mr-2"></i>Adaptée à votre oreille.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Une pile plus grosse offre une durée de vie plus longue - option rechargeable disponible sur certains modèles.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Peut intégrer les commandes manuelles de volume et de programmes indisponibles sur les modèles sur mesure plus petits.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-auto">
-                                <img src="{{ asset('FrontOffice/images/team/esseyage3.png')}}" alt="" style="width: 600px; height: auto;">
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
-
-
-                <!-- Appareil 4 -->
-                <section class="section doctor-single" id="cat3-section" style="display: none;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="doctor-img-block">
-                                    <img src="{{ asset('FrontOffice/images/team/4.png')}}" alt="" class="img-fluid w-100">
-                                </div>
-                            </div>
-                            <div class="col-lg-9 col-md-6">
-                                <div class="doctor-details mt-4 mt-lg-0">
-                                    <h2 class="text-md">Intra-conduit (ITC)</h2>
-                                    <div class="divider my-4"></div>
-                                    <p>Aide auditive sur mesure qui se loge dans le conduit auditif. La partie la plus petite est visible dans l'oreille externe.</p>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <h4 class="mt-2 mb-3" style="color: #223a66;">Les avantages</h4>
-                                                <ul class="list-unstyled department-service">
-                                                    <li><i class="icofont-check mr-2"></i>Adaptée à votre oreille.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Moins visible que les modèles sur mesure plus grands.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Peut intégrer les commandes manuelles de volume et de programmes indisponibles sur les modèles sur mesure plus petits.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-auto">
-                                <img src="{{ asset('FrontOffice/images/team/esseyage4.png')}}" alt="" style="width: 600px; height: auto;">
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
-
-
-                <!-- Appareil 5 -->
-                <section class="section doctor-single" id="cat4-section" style="display: none;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="doctor-img-block">
-                                    <img src="{{ asset('FrontOffice/images/team/4.png')}}" alt="" class="img-fluid w-100">
-                                </div>
-                            </div>
-                            <div class="col-lg-9 col-md-6">
-                                <div class="doctor-details mt-4 mt-lg-0">
-                                    <h2 class="text-md">Intra-auriculaire semi profond (CIC)</h2>
-                                    <div class="divider my-4"></div>
-                                    <p>Seul le minuscule fil d'extraction de l'aide auditive dépasse du conduit auditif.</p>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <h4 class="mt-2 mb-3" style="color: #223a66;">Les avantages</h4>
-                                                <ul class="list-unstyled department-service">
-                                                    <li><i class="icofont-check mr-2"></i>Réalisé sur-mesure.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Quasiment invisible.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Moins visible que les modèles sur mesure plus grands.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-auto">
-                                <img src="{{ asset('FrontOffice/images/team/esseyage5.png')}}" alt="" style="width: 400px; height: auto;">
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
-
-
-                <!-- Appareil 6 -->
-                <section class="section doctor-single" id="cat5-section" style="display: none;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="doctor-img-block">
-                                    <img src="{{ asset('FrontOffice/images/team/esseyage6.png')}}" alt="" class="img-fluid w-100">
-                                </div>
-                            </div>
-                            <div class="col-lg-9 col-md-6">
-                                <div class="doctor-details mt-4 mt-lg-0">
-                                    <h2 class="text-md">Intra-auriculaire profond (IIC)</h2>
-                                    <div class="divider my-4"></div>
-                                    <p>Les aides auditives se nichent dans le deuxième coude du conduit auditif, à l'abri des regards.</p>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <h4 class="mt-2 mb-3" style="color: #223a66;">Les avantages</h4>
-                                                <ul class="list-unstyled department-service">
-                                                    <li><i class="icofont-check mr-2"></i>Réalisé sur-mesure.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Invisibles.</li>
-                                                    <li><i class="icofont-check mr-2"></i>Se loge en profondeur dans le deuxième coude de votre conduit auditif.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-auto">
-                                <img src="{{ asset('FrontOffice/images/team/5.png')}}" alt="" style="width: 600px; height: auto;">
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
-
-            </div>
-        </div>
-    </section>
-{% endblock %}
-
-{% block js %}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const radioButtons = document.querySelectorAll('input[name="shuffle-filter"]');
-            const sections = document.querySelectorAll('.doctor-single');
-
-            radioButtons.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    sections.forEach(section => {
-                        section.style.display = 'none'; // Hide all sections
-                    });
-
-                    const selectedValue = this.value;
-                    const selectedSection = document.getElementById(selectedValue + '-section');
-                    if (selectedSection) {
-                        selectedSection.style.display = 'block'; // Show the selected section
-                    }
-                });
-            });
-
-            // Initially show the first section if necessary
-            const checkedRadio = document.querySelector('input[name="shuffle-filter"]:checked');
-            if (checkedRadio) {
-                document.getElementById(checkedRadio.value + '-section').style.display = 'block';
-            }
-        });
-    </script>
+{% block stylesheet %}
+{{ parent() }}
+<link href="{{ asset('FrontOffice/css/maboutique.css') }}" rel="stylesheet">
 {% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'Backoffice/base.html.twig' %}
+
+{% block title %}Modifier produit{% endblock %}
+
+{% block body %}
+
+
+    {{ include('produit/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+<div class="mb-3" style="display: flex; gap: 10px;">
+
+    <a class="btn btn-primary" href="{{ path('app_produit_index') }}">Retourner </a>
+
+    {{ include('produit/_delete_form.html.twig') }} </div>
+{% endblock %}
+
+

@@ -1,0 +1,41 @@
+{% extends 'Backoffice/base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+    <h2 class="mt-4">{{ produit.nom }}</h2>
+
+<div class="card mb-4">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ produit.nom }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td class="py-1"><img style="width: 200px; height: 200px; border-radius: 0;" src="{{ asset('BackOffice/img/' ~ produit.imageProduit) }}" alt="Image"></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ produit.description }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ produit.prix }} DT</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="mb-3" style="display: flex; gap: 10px;">
+    <a class="btn btn-primary" href="{{ path('app_produit_index') }}">Retourner</a>
+
+    <a type="submit" class="btn btn-success" href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
+
+    {{ include('produit/_delete_form.html.twig') }}</div>
+{% endblock %}

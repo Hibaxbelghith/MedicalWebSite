@@ -1,0 +1,53 @@
+{% extends 'Backoffice/base.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block body %}
+    <h2 class="mt-4">Les produits</h2>
+    <br>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fa-solid fa-list"></i>
+        Liste des produits
+        <a type="submit" class="btn" style="background-color: rgb(251,33,117); color: white; float: right;" href="{{ path('app_produit_new') }}">Créer produit</a>
+    </div>
+
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Catégorie</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.nom }}</td>
+                <td><img src="{{ asset('BackOffice/img/' ~ produit.imageProduit) }}" alt="Image" width="150"></td>
+                <td>{{ produit.description }}</td>
+                <td>{{ produit.prix }} DT</td>
+                <td>{{ produit.categorie }}</td>
+                <td>
+                    <a class="btn btn-success btn-sm" href="{{ path('app_produit_show', {'id': produit.id}) }}">Afficher</a>
+                    <a class="btn btn-primary btn-sm" href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune résultat trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+
+{% endblock %}

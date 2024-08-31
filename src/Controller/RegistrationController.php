@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class RegistrationController extends AbstractController
 {
 
@@ -23,7 +22,7 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
-        $emailExistError=false;
+        $emailExistError = false;
         if ($form->isSubmitted() && $form->isValid()) {
 
             $userExist = $userRepository->findOneByEmail($form->get('email')->getData());
@@ -45,12 +44,15 @@ class RegistrationController extends AbstractController
                 $entityManager->persist($user);
                 $entityManager->flush();
 
-                $this->addFlash('success', 'User registered successfully.');
                 return $this->redirectToRoute('back');
-            }}
+            }
+        }
 
-            return $this->render('security/registration.html.twig', [
-                'form' => $form->createView(),
-                'emailExistError' => $emailExistError,
-            ]);
-        }}
+        return $this->render('security/registration.html.twig', [
+            'form' => $form->createView(),
+            'emailExistError' => $emailExistError,
+        ]);
+    }
+
+
+}

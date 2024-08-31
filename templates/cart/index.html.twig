@@ -1,0 +1,88 @@
+{%  extends 'FrontOffice/base.html.twig'%}
+
+{% block title %} Mon panier {% endblock %}
+
+
+{% block body %}
+
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for message in app.session.flashBag.get('success') %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <section>
+    <div class="container py-5">
+    <div class="row">
+
+        <h2 class="mt-5">Mon panier</h2>
+            <hr>
+        {% if cartProduit|length > 0 %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Total</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% set total = null %}
+                {% for produit in cartProduit %}
+                <tr>
+                    <th><img width="35px" height="35px" class="img-fluid" src="/BackOffice/img/{{ produit.produit.imageProduit }}" /></th>
+                    <td>{{ produit.produit.nom }}</td>
+                    <td> <a href="{{ path('decrease_product_cart', {id : produit.produit.id} )  }}"><i class="fa-solid fa-minus fa-sm"></i></a> ({{ produit.quantite }}) <a href="{{ path('add_cart', {id : produit.produit.id}  ) }}"> <i class="fa-regular fa-plus fa-sm"></i> </a> </td>
+                    <td>{{ produit.produit.prix | number_format(2, '.', '') }} DT</td>
+                    <td>{{ (produit.produit.prix * produit.quantite) | number_format(2, '.', '') }} DT</td>
+                    <td><a href="{{ path('delete_product_cart', {id : produit.produit.id} )  }}"><i class="fa-solid fa-trash"></i></a></td>
+                </tr>
+                    {% set total =  total + (produit.produit.prix * produit.quantite) %}
+                {%  endfor %}
+                </tbody>
+            </table>
+
+    </div>
+
+
+
+        <div class="row">
+            <div class="col-md-3 offset-md-9">
+                <h6>Nombre des produits :  {{ cartProduit|length }} </h6> <br>
+                <h6> Total de nom panier :  {{ total }} DT </h6>
+                <br>
+            </div>
+        </div>
+        <div class="col-md-3 offset-md-9 btn-group ">
+        <a href="{{ path('remove_cart')  }}" class="btn btn-danger mt-4 "> Vider mon panier</a>
+        <a href="" class="btn btn-success mt-4  "> Valider mon panier</a>
+    </div>
+
+
+    </div>
+
+        {% else %}
+            <h3>Votre panier est vide !</h3>
+        {% endif %}
+
+    </section>
+
+{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('FrontOffice/css/maboutique.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        header {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+{% endblock %}

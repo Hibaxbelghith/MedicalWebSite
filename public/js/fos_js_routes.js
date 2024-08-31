@@ -1,0 +1,1 @@
+fos.Router.setData({"base_url":"","routes":{"add_cart":{"tokens":[["variable","\/","[^\/]++","id",true],["text","\/cart\/add"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":[],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http","locale":""});

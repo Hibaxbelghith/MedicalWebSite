@@ -32,7 +32,9 @@
                     <button class="btn btn-primary" id="btnNavbarSearch" type="button" style="background-color: rgb(251,33,117)"><i class="fas fa-search" ></i></button>
                 </div>
             </form>
+            {% if app.user %}
             <div><h6>{{ app.user.firstName ~ ' ' ~ app.user.lastname }}</h6></div>
+            {% endif %}
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
@@ -42,7 +44,7 @@
                         <!-- si super admin -->
                         
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{{ path('app_logout') }}" >Me déconnecter</a></li>
+                        <li><a class="dropdown-item" href="{{ path('admin_logout') }}" >Me déconnecter</a></li>
                     </ul>
                 </li>
             </ul>
@@ -111,6 +113,14 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                                 Gestion utilisateurs
                             </a>
+                            <a class="nav-link" href="{{ path('app_category_index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
+                                Gestion catégories
+                            </a>
+                            <a class="nav-link" href="{{ path('app_produit_index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-shop"></i></div>
+                                Gestion produits
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -125,9 +135,12 @@
                     <div class="container-fluid px-4">
                         {% block body %}
                         <h1 class="mt-4">Dashboard</h1>
+                        {% if app.user %}
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Bienvenu {{ app.user.firstName }} !</li>
                         </ol>
+                        {% endif %}
+
                         {# {{ include('fragments/alert.html.twig') }}#}
                         <div class="row"> 
                             <div class="col-xl-3 col-md-6">
@@ -219,31 +232,14 @@
         <script src="{{ asset('BackOffice/demo/chart-bar-demo.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('BackOffice/js/datatables-simple-demo.js') }}"></script>
+            {% if totalRendezVous is defined and data is defined and labels is defined %}
             <script type="text/javascript">
-                var ctx = document.getElementById('myChart');
-
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        datasets: [{
-                            type: 'bar',
-                            label: '{{ totalRendezVous }} Rendez-vous',
-                            data: {{ data|raw }},
-                            borderWidth: 1,
-                            backgroundColor: '#9BD0F5',
-                            borderColor: '#9BD0F5',
-                        }],
-                        labels: {{ labels|raw }},
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
+                var totalRendezVous = {{ totalRendezVous|default(0) }};
+                var chartData = {{ data|raw }};
+                var chartLabels = {{ labels|raw }};
             </script>
+            <script src="{{ asset('BackOffice/demo/chart-demo.js') }}"></script>
+            {% endif %}
         {% endblock %}
     </body>
     

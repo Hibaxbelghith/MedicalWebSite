@@ -24,6 +24,9 @@
         <!-- Main Stylesheet -->
         <link href="{{ asset('FrontOffice/css/style.css') }}" rel="stylesheet">
 
+        <!-- font awesome icons -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
     {% endblock  %}
     </head>
 
@@ -67,7 +70,7 @@
                             <a class="nav-link" href="{{ path ('home') }}" >Acceuil</a>
                         </li>
 
-                        <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+{#                        <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>#}
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aides auditives <i class="icofont-thin-down"></i></a>
@@ -86,8 +89,22 @@
                             </ul>
                         </li>
 
-                        <a href="{{ path ('test') }}"  class="btn btn-main-2 btn-icon btn-round-full">Test auditif en ligne<i class="icofont-simple-right ml-2  "></i></a>
+                        <a href="{{ path ('app_produit_front') }}"  class="btn btn-main-2 btn-icon btn-round-full">Découvrir nos accessoires<i class="icofont-simple-right ml-2  "></i></a>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_cart') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>
+                                    {% if app.user %}
+                                        Welcome, {{ app.user.lastName }}!
+                                    {% endif %} </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ path('app_register_client') }}">Créer compte</a></li>
+                                    <!-- si super admin -->
 
+                                    <li><a class="dropdown-item" href="{{ path('app_login') }}" >Se connecter</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </ul>
                 </div>
             </div>
@@ -97,6 +114,7 @@
 
 
 {% block body %}
+
     <!-- Slider Start -->
     <section class="banner">
         <div class="container">
@@ -484,10 +502,13 @@
     <script src="plugins/google-map/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
 
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="{{ asset('FrontOffice/js/contact.js') }}"></script>
     <script src="{{ asset('FrontOffice/js/script.js') }}"></script>
+
 {% endblock  %}
 
 </body>

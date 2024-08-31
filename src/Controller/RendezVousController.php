@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RendezVousController extends AbstractController
 {
 
-    //new appointment
+    //new appointment Front
     #[Route('/home/appointment', name: 'rendezVous')]
     public function add_appointment(Request $request, EntityManagerInterface $entityManager,SendMailProvider $sendMailProvider): Response
     {

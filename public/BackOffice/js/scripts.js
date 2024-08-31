@@ -24,3 +24,35 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Vérifie que les variables sont définies
+    if (typeof totalRendezVous !== 'undefined' && typeof chartData !== 'undefined' && typeof chartLabels !== 'undefined') {
+        var ctx = document.getElementById('myChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        type: 'bar',
+                        label: totalRendezVous + ' Rendez-vous',
+                        data: chartData,
+                        borderWidth: 1,
+                        backgroundColor: '#9BD0F5',
+                        borderColor: '#9BD0F5',
+                    }],
+                    labels: chartLabels,
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    }
+});
+
+

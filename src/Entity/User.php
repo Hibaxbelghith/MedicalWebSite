@@ -71,9 +71,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?string $lastName = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $role = 'ROLE_ADMIN';
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $resetToken;
 
@@ -82,6 +79,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Adresse::class, mappedBy: 'user')]
     private Collection $adresses;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $isBlocked = false;
 
     public function __construct()
     {
@@ -241,6 +241,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function isBlocked(): ?bool
+    {
+        return $this->isBlocked;
+    }
+
+    public function setBlocked(?bool $isBlocked): static
+    {
+        $this->isBlocked = $isBlocked;
+
+        return $this;
+    }
+
+    public  function getFullName()
+    {
+        return $this->firstName.' '.$this->lastName;
     }
 
 

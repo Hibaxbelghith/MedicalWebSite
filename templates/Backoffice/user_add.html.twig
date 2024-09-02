@@ -1,0 +1,45 @@
+{% extends 'Backoffice/base.html.twig' %}
+
+{% block title %} Ajouter utilisateur {% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="mt-4" >Ajouter utilisateur</h2>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+        <div class="mb-3">
+            {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'adresse e-mail'}}) }}
+            <div class="text-danger">
+                    {{ form_errors(form.email) }}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.firstName, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+            <div class="text-danger">{{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'nom'}}) }}</div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.lastName, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+            <div class="text-danger">{{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'prénom'}}) }}</div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Mon nouveau mot de passe'}}) }}
+            <div class="text-danger">{{ form_errors(form.password, {'attr': {'class': 'text-danger'}}) }}</div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.repeatPassword, 'Répetez le mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.repeatPassword, {'attr': {'class': 'form-control', 'placeholder': 'Mon nouveau mot de passe'}}) }}
+            <div class="text-danger">{{ form_errors(form.repeatPassword, {'attr': {'class': 'text-danger'}}) }}</div>
+        </div>
+
+        <button type="submit" class="btn" style="background-color: rgb(251,33,117); color: white;">Ajouter</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

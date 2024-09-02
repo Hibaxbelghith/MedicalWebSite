@@ -1,0 +1,10 @@
+{% extends 'Backoffice/base.html.twig' %}
+
+{% block title %}Nouveau transporteur{% endblock %}
+
+{% block body %}
+    <h2 class="mt-4" >Ajout d'un transporteur</h2>
+
+    {{ include('carrier/_form.html.twig') }}
+    <a class="btn btn-primary" href="{{ path('app_carrier_index') }}">Retourner</a>
+{% endblock %}

@@ -1,0 +1,45 @@
+<div class="container mt-5">
+    {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}})}}
+
+    <div class="mb-3">
+        {{ form_label(form.user, 'Utilisateur',{'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.user, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.NomCarrier, 'Nom transporteur', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.NomCarrier, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.NomCarrier, {'attr': {'class': 'text-danger'}}) }}</div>
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.PrixCarrier, 'Cout livraison', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.PrixCarrier, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.PrixCarrier, {'attr': {'class': 'text-danger'}}) }}</div>
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.totaleCommande, 'Totale commande', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.totaleCommande, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.totaleCommande, {'attr': {'class': 'text-danger'}}) }}</div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.createdAt, 'Date passation',{'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.createdAt, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.createdAt, {'attr': {'class': 'text-danger'}}) }}</div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.delivery, 'Adresse',{'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.delivery, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.delivery, {'attr': {'class': 'text-danger'}}) }}</div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.isPaid, 'Etat',{'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.isPaid, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.isPaid, {'attr': {'class': 'text-danger'}}) }}</div>
+    </div>
+
+    <button type="submit" class="btn" style="background-color: rgb(251,33,117); color: white;">{{ button_label|default('Enregistrer') }}</button>
+    {{ form_end(form) }}
+</div>

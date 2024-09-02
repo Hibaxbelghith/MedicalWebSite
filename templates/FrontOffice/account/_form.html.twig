@@ -1,0 +1,50 @@
+{{ form_start(form) }}
+
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.lastname, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.firstname, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        {{ form_row(form.entreprise, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        {{ form_row(form.codePostal, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="col-md-4">
+        {{ form_row(form.ville, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="col-md-4">
+        {{ form_row(form.pays, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        {{ form_row(form.telephone, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        {{ form_row(form.adresse, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+
+<br>
+
+{{ form_end(form) }}

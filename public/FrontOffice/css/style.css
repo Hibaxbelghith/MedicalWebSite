@@ -280,10 +280,10 @@ a {
     transition: all .35s ease;
 }
 
-a:focus, a:hover {
+/*a:focus, a:hover {
     color: #e12454;
     text-decoration: none;
-}
+}*/
 
 a:focus {
     outline: none;
@@ -1392,9 +1392,9 @@ a:focus {
     color: #6F8BA4;
 }
 
-.widget .footer-menu a:hover {
+/*.widget .footer-menu a:hover {
     color: #e12454;
-}
+} */
 
 .footer-contact-block span {
     font-weight: 400;

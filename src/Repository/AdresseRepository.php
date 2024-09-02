@@ -40,4 +40,16 @@ class AdresseRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function getNonDeletedAddressByUserId($userId): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.user = :userId')
+            ->setParameter('userId', $userId)
+            ->andWhere('a.isDeleted = false')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

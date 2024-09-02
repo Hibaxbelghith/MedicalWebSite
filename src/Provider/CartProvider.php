@@ -1,5 +1,6 @@
 <?php
 namespace App\Provider;
+use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -7,7 +8,7 @@ class CartProvider{
 
     private $session;
 
-    public function __construct(private RequestStack $requestStack){
+    public function __construct(private RequestStack $requestStack,private ProduitRepository $produitRepository){
         $this->session = $this->requestStack->getSession();
     }
 
@@ -45,6 +46,21 @@ class CartProvider{
             unset($cart[$id]);
         }
         $this->session->set('cart',$cart);
+    }
+
+    public function cartComplet()
+    {
+        $cartProduit = [];
+        $cart = $this->getCart();
+        if ($cart){
+            foreach($cart as $id => $quantity) {
+                $cartProduit [] = [
+                    'produit' => $this->produitRepository->findOneById($id),
+                    'quantite' => $quantity
+                ];
+
+            }}
+        return $cartProduit;
     }
 
 }

@@ -1,0 +1,57 @@
+{%  extends 'FrontOffice/base.html.twig'%}
+
+{% block title %} Mes adresses {% endblock %}
+
+
+{% block body %}
+
+    <section>
+        <div class="container py-5">
+
+                <a href="{{ path('app_adresse_add') }}" class="btn btn-sm float-end" style="background-color: #e12454; color: whitesmoke">Ajouter une adresse</a>
+                <h2 class="mt-5">Espace gestion des adresses</h2>
+                <br>
+                <a href="{{ path('app_account_user') }}">Retour</a>
+                {% if app.user.adresses | length == 0 %}
+                <p class="text-color">
+                    Vous n'avez pas encore ajouté une adresse sur votre compte. Pour ajouter une, veuillez
+                    <a href="{{ path('app_adresse_add') }}">Cliquez ici</a>
+                </p>
+                {%  else %}
+                    <br>
+                <div class="row">
+                    {% for a in app.user.adresses %}
+                        {% if a.isDeleted == false %}
+                    <div class="col-md-4">
+                        <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ a.nom }}</h5>
+                        <p class="card-text"> {{ a.adresse }}, <br>
+                            {{ a.codePostal }} - {{ a.ville }} - {{ a.pays }}
+                        </p>
+                            <a href="{{ path('app_adresse_update',{id: a.id}) }}">Modifier</a> | <a href="{{ path('app_adresse_delete',{id: a.id}) }}">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+                        {% endif %}
+                    {%  endfor %}
+                </div>
+                {%  endif %}
+
+            </div>
+    </section>
+
+{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('FrontOffice/css/maboutique.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        header {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{%  extends 'FrontOffice/base.html.twig'%}
+
+{% block title %} Mon profile {% endblock %}
+
+
+{% block body %}
+
+    <section>
+        <div class="container py-5">
+
+                <h2 class="mt-4">Profile</h2>
+                <li><a href="{{ path('app_account_update_password_user') }}">Modifier mot de passe</a></li>
+                <li><a href="{{ path('app_adresse') }}">Gestion des adresses</a></li>
+
+        </div>
+
+    </section>
+
+{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('FrontOffice/css/maboutique.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        header {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+{% endblock %}

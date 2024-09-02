@@ -95,13 +95,20 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>
                                     {% if app.user %}
-                                        Welcome, {{ app.user.lastName }}!
+                                         {{ app.user.lastName }}
                                     {% endif %} </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{{ path('app_register_client') }}">Créer compte</a></li>
-                                    <!-- si super admin -->
-
-                                    <li><a class="dropdown-item" href="{{ path('app_login') }}" >Se connecter</a></li>
+                                    {% if app.user %}
+                                        <li><a class="dropdown-item" href="{{ path('app_account_user') }}">Mon Profil</a></li>
+                                        <li>
+                                        <a class="dropdown-item" href="{{ path('app_logout') }}">
+                                            <i class="fas fa-sign-out-alt"></i> Se Déconnecter
+                                        </a>
+                                    {% else %}
+                                        <li><a class="dropdown-item" href="{{ path('app_register') }}">Créer Compte</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_login') }}">Se Connecter</a></li>
+                                    {% endif %}
+                                    </a>
                                 </ul>
                             </li>
                         </ul>

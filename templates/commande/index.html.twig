@@ -1,0 +1,95 @@
+{%  extends 'FrontOffice/base.html.twig'%}
+
+{% block title %} Validation commande {% endblock %}
+
+
+{% block body %}
+    <section>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h3 class="mt-5">Je valide ma commande.</h3>
+                    <p>Choisissez votre adresse de livraison et transporteur</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card p-4 shadow-sm d-flex flex-column h-auto">
+                        <h4 class="mb-3">Adresse de livraison</h4>
+                        <a href="{{ path('app_adresse_add') }}" class="btn btn-primary btn-sm mb-3">
+                            <i class="fas fa-plus-circle"></i> Ajouter une adresse de livraison</a>
+                        {% set formHtml %}
+                            {{ form_start(form, {action: path('app_commande_add'), 'attr': {'novalidate': 'novalidate'}}) }}
+                            <div class="mb-3">
+                                {{ form_label(form.adresse, null, {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.adresse, {
+                                    'attr': {
+                                        'class': 'form-control',
+                                        'style': 'height: auto; min-height: 120px; max-height: 140px; overflow-y: auto;'
+                                    }
+                                }) }}
+                                <div class="text-danger">{{ form_errors(form.adresse) }}</div>
+                            </div>
+
+                            <h4 class="mb-3">Transporteur</h4>
+                            <div class="mb-3">
+                                {{ form_label(form.transporteur, null, {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.transporteur, {
+                                    'attr': {
+                                        'class': 'form-control',
+                                        'style': 'height: auto; min-height: 120px; max-height: 140px; overflow-y: auto;'
+                                    }
+                                }) }}
+                                <div class="text-danger">{{ form_errors(form.transporteur) }}</div>
+                            </div>
+
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-success w-100'}}) }}
+
+                            {{ form_end(form) }}
+                        {% endset %}
+                        {{ formHtml |replace({ '[br]' : '<br>' })|raw }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card p-4 shadow-sm d-flex flex-column h-auto">
+                        <h4 class="mb-3">Mes produits</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tbody>
+                                {% for produit in cart %}
+                                    <tr>
+                                        <td class="text-center" style="width: 20%;">
+                                            <img width="50px" height="50px" class="img-fluid" src="/BackOffice/img/{{ produit.produit.imageProduit }}" alt="{{ produit.produit.nom }}">
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <div><b>{{ produit.produit.nom }}</b></div>
+                                            <div>{{ produit.produit.categorie }}</div>
+                                        </td>
+                                        <td class="text-center" style="width: 30%;">
+                                            X {{ produit.quantite }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('FrontOffice/css/maboutique.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        header {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+{% endblock %}

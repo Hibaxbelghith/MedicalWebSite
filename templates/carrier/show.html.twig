@@ -1,0 +1,38 @@
+{% extends 'Backoffice/base.html.twig' %}
+
+{% block title %}Transporteur{% endblock %}
+
+{% block body %}
+<h2 class="mt-4">{{ carrier.nom }}</h2>
+
+<div class="card mb-4">
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ carrier.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ carrier.nom }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ carrier.description }}</td>
+        </tr>
+        <tr>
+            <th>Prix</th>
+            <td>{{ carrier.prix }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="mb-3" style="display: flex; gap: 10px;">
+    <a class="btn btn-primary" href="{{ path('app_carrier_index') }}">Retourner</a>
+
+    <a class="btn btn-success" href="{{ path('app_carrier_edit', {'id': carrier.id}) }}">Modifier</a>
+
+    {{ include('carrier/_delete_form.html.twig') }}</div>
+{% endblock %}
+

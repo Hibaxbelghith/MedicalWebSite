@@ -1,0 +1,116 @@
+{%  extends 'FrontOffice/base.html.twig'%}
+
+{% block title %} Pré-validation commande {% endblock %}
+
+
+{% block body %}
+
+    <section>
+        <div class="container py-5">
+        <div class="row">
+            <div class="col-12 text-center mb-4 d-flex flex-column h-auto">
+                <h3 class="mt-5">Vérifiez vos information avant de passer la commande.</h3>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card p-4 shadow-sm">
+                    <h4 class="mb-3">Mon adresse de livraison</h4>
+                {{  commande.delivery|raw }}
+                <hr>
+                    <h4 class="mb-3">Livraison</h4>
+
+                {{ commande.nomCarrier }}  : {{ commande.prixCarrier | number_format(2,'.',',')}} DT
+            </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card p-4 shadow-sm d-flex flex-column h-auto">
+                    <h4 class="mb-3">Mes produits</h4>
+                    {% set total = null %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tbody>
+                            {% for produit in cart %}
+                                <tr>
+                                    <td class="text-center" style="width: 20%;">
+                                        <img width="50px" height="50px" class="img-fluid" src="/BackOffice/img/{{ produit.produit.imageProduit }}" alt="{{ produit.produit.nom }}">
+                                    </td>
+                                    <td style="width: 50%;">
+                                        <div><b>{{ produit.produit.nom }}</b></div>
+                                        <div>{{ produit.produit.categorie }}</div>
+                                    </td>
+                                    <td class="text-center" style="width: 30%;">
+                                        X {{ produit.quantite }}
+                                    </td>
+                                    <td style="width: 50%;">
+                                        <div><b>{{ (produit.produit.prix * produit.quantite) | number_format(2,'.',',') }} DT </b></div>
+                                    </td>
+                                </tr>
+                                {% set total = total + (produit.produit.prix * produit.quantite)  %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h5>Sous-Total : {{ total | number_format(2,'.',',') }} DT</h5>
+                        <br>
+                        <h5>Livraison : {{ commande.prixCarrier | number_format(2,'.',',')}} DT </h5>
+                        <hr>
+                        <h5> Total : {{ commande.totaleCommande | number_format(2,'.',',') }} DT</h5>
+                        <a href="#" class="btn btn-success w-100 mt-4" id="confirmOrderBtn">Paiement à la livraison | {{ commande.totaleCommande | number_format(2,'.',',') }} DT </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('FrontOffice/css/maboutique.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+
+    <style>
+        header {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    {% endblock %}
+
+{% block js %}
+
+    {{ parent() }}
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.getElementById('confirmOrderBtn').addEventListener('click', function(event) {
+            event.preventDefault(); // Empêche le comportement par défaut du lien
+
+            Swal.fire({
+                title: 'Merci de votre confiance',
+                text: "Votre commande sera confirmée par téléphone et livrée dans les 24 heures. " +
+                    "Le paiement se fera à la livraison. Soyez joignable.",
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#28a745',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ok',
+                cancelButtonText: 'Annuler'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si confirmé, redirige vers la route de suppression du panier
+                    window.location.href = "{{ path('remove_cart') }}";
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

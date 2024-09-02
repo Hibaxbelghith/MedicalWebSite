@@ -2,71 +2,53 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\UserType;
-use App\Repository\UserRepository;
+use App\Form\UpdateProfilePasswordType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-
+use Symfony\Component\Routing\Attribute\Route;
 
 class FrontUserController extends AbstractController
 {
-
-    #[Route('/registerClient', name: 'app_register_client')]
-    public function register(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+    public function __construct(public EntityManagerInterface $entityManager)
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
 
+    }
+
+    #[Route('/home/account', name: 'app_account_user')]
+    public function index(): Response
+    {
+        return $this->render('FrontOffice/account/index.html.twig', [
+            'controller_name' => 'AccountController',
+        ]);
+    }
+
+    #[Route('/home/update_password_user', name: 'app_account_update_password_user')]
+    public function updatePassword(Request $request,UserPasswordHasherInterface $userHasher): Response
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(UpdateProfilePasswordType::class,$user);
         $form->handleRequest($request);
-        $emailExistError=false;
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted() && $form->isValid()){
 
-            $userExist = $userRepository->findOneByEmail($form->get('email')->getData());
-            if ($userExist) {
-                $emailExistError = true;
-            } else {
-                // Retrieve the plain password from the form
-                $plainPassword = $form->get('password')->getData();
+            $old_password = $form->get('oldPassword')->getData();
+            if($userHasher->isPasswordValid($user,$old_password)){
+                $new_password = $form->get('newPassword')->getData();
+                $password = $userHasher->hashPassword(
+                    $user,
+                    $new_password
+                );
+                $user->setPassword($password);
+                $this->entityManager->persist($user);
+                $this->entityManager->flush();
+            }
 
-                // Hash the password using the password hasher service
-                $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+        }
 
-                // Set the hashed password to the user entity
-                $user->setPassword($hashedPassword);
-
-                // Attribuer le rôle par défaut
-                $user->setRoles(['ROLE_USER']);
-
-                $entityManager->persist($user);
-                $entityManager->flush();
-
-                return $this->redirectToRoute('home');
-            }}
-
-        return $this->render('FrontOffice/registrationClient.html.twig', [
+        return $this->render('FrontOffice/updatePasswordUser.html.twig',[
             'form' => $form->createView(),
-            'emailExistError' => $emailExistError,
         ]);
     }
-
-    #[Route(path: '/loginClient', name: 'client_login')]
-    public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository): Response
-    {
-        $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
-        $foundUser = $userRepository->findOneByEmail($lastUsername);
-
-        return $this->render('FrontOffice/loginClient.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error,
-            'foundUser' => $foundUser,
-        ]);
-    }
-
 }

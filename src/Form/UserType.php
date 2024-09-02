@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
@@ -27,7 +28,8 @@ class UserType extends AbstractType
         $currentUserId = $currentUser?->getId();
 
         $builder
-            ->add('email')
+            ->add('email',EmailType::class, [
+                'help' => 'Veuillez vérifier que votre email est bien activé.',])
             ->add('password', PasswordType::class, [
                 'label' => 'Password'])
             ->add('repeatPassword', PasswordType::class, [

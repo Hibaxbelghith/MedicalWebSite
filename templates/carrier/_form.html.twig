@@ -1,0 +1,23 @@
+<div class="container mt-5">
+    {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
+    <div class="mb-3">
+        <div class="mb-3">
+            {{ form_label(form.nom, 'nom', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.nom, {'attr': {'class': 'form-control','placeholder': 'nom carrier'}}) }}
+            <div class="text-danger">{{ form_errors(form.nom, {'attr': {'class': 'text-danger'}}) }}</div>
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.description, 'description', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control','placeholder': 'description carrier'}}) }}
+            <div class="text-danger">{{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}</div>
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.prix, 'prix', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.prix, {'attr': {'class': 'form-control','placeholder': 'prix'}}) }}
+            <div class="text-danger">{{ form_errors(form.prix, {'attr': {'class': 'text-danger'}}) }}</div>
+        </div>
+    </div>
+    <button type="submit" class="btn" style="background-color: rgb(251,33,117); color: white;">{{ button_label|default('Enregistrer') }}</button>
+
+    {{ form_end(form) }}
+</div>

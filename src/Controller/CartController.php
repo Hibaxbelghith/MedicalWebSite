@@ -18,18 +18,8 @@ class CartController extends AbstractController
     #[Route('/mon-panier', name: 'app_cart')]
     public function index(): Response
     {
-        $cartProduit = [];
-        $cart = $this->cartProvider->getCart();
-        if ($cart){
-        foreach($cart as $id => $quantity) {
-            $cartProduit [] = [
-                'produit' => $this->produitRepository->findOneById($id),
-                'quantite' => $quantity
-            ];
-
-        }}
         return $this->render('cart/index.html.twig', [
-            'cartProduit' => $cartProduit,
+            'cartProduit' => $this->cartProvider->cartComplet(),
         ]);
     }
 

@@ -7,6 +7,7 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -27,6 +28,7 @@ class RegistrationController extends AbstractController
 
             $userExist = $userRepository->findOneByEmail($form->get('email')->getData());
             if ($userExist) {
+                $form->get('email')->addError(new FormError('Cet email est déjà utilisé.'));
                 $emailExistError = true;
             } else {
                 // Retrieve the plain password from the form

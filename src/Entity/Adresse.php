@@ -41,7 +41,10 @@ class Adresse
     private ?string $telephone = null;
 
     #[ORM\ManyToOne(inversedBy: 'adresses')]
-    private ?user $user = null;
+    private ?User $user = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $isDeleted = false;
 
     public function getId(): ?int
     {
@@ -156,15 +159,32 @@ class Adresse
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 
         return $this;
+    }
+
+    public function isDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setDeleted(?bool $isDeleted): static
+    {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getAdresse().'[br]'.$this->getCodePostal().'-'.$this->getVille().'-'.$this->getPays();
     }
 }

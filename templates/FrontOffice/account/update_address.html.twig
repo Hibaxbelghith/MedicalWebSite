@@ -1,0 +1,37 @@
+{%  extends 'FrontOffice/base.html.twig'%}
+
+{% block title %} Modification des adresses {% endblock %}
+
+
+{% block body %}
+
+    <section>
+        <div class="container py-5">
+
+            <h2 class="mt-5">Modifier mon adresse</h2>
+            <br>
+            <a href="{{ path('app_adresse') }}">Retour</a>
+
+            <hr>
+
+            {%  include '/FrontOffice/account/_form.html.twig' %}
+
+
+        </div>
+
+    </section>
+
+{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('FrontOffice/css/maboutique.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        header {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+{% endblock %}
